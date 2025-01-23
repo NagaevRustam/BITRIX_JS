@@ -7,7 +7,7 @@ $APPLICATION->SetTitle("AJAX");
    // подключаем ajax регистрируя расширение
    CJSCore::Init(array('ajax'));
    $sidAjax = 'testAjax';  
-if(isset($_REQUEST['ajax_form']) && $_REQUEST['ajax_form'] == $sidAjax){ //проверка параметра и если он совпадает то выполняет JSON и убивается
+if(isset($_REQUEST['ajax_form']) && $_REQUEST['ajax_form'] == $sidAjax){ //проверка параметра и если он совпадает то выполняет JSON
    $GLOBALS['APPLICATION']->RestartBuffer();
    echo CUtil::PhpToJSObject(array(
             'RESULT' => 'HELLO',
@@ -24,6 +24,7 @@ if(isset($_REQUEST['ajax_form']) && $_REQUEST['ajax_form'] == $sidAjax){ //пр�
 </div>
 <script>
    window.BXDEBUG = true;
+
 function DEMOLoad(){ //функция DEMOLoad()
    BX.hide(BX("block"));   //скрывает элемент block
    BX.show(BX("process")); //показываем элемент process
@@ -37,7 +38,6 @@ function DEMOResponse (data){ //функция DEMOResponse
    BX("block").innerHTML = data.RESULT;
    BX.show(BX("block"));   //показываем элемент block
    BX.hide(BX("process")); //скрываем элемент process
-
    BX.onCustomEvent( //вызываем кастомное событие
       BX(BX("block")),
       'DEMOUpdate'
@@ -68,8 +68,7 @@ BX.ready(function(){ //по готовности выполнить функци
 });
 
 </script>
-//элемент с классом css_ajax, который можем кликнуть
-<div class="css_ajax">click Me</div>
+<div class="css_ajax">click Me</div> <!-- элемент с классом css_ajax, который можем кликнуть -->
 <?
 //подключаем эпилог ядра bitrix
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
